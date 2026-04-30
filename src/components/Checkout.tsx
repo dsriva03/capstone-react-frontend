@@ -52,13 +52,15 @@ const Checkout = ({ cartItems, cartTotal }: CheckoutProps) => {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(
-        cartItems.map((item) => ({
-          orderid: order.id,
-          itemid: item.id,
-          price: item.price,
-          notes: '',
-          firstName: ''
-        }))
+        cartItems.flatMap((item) =>
+        Array.from({ length: item.quantity }, () => ({
+        orderid: order.id,
+        itemid: item.id,
+        price: item.price,
+        notes: '',
+        firstName: ''
+    }))
+)
       )
     })
 

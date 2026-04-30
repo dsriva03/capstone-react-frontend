@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
+
 interface OrderDetails {
   id: number
   ordertime: string
@@ -21,10 +22,18 @@ interface OrderItem {
   firstName: string
 }
 
+interface MenuItem {
+  id: number
+  name: string
+  price: number
+}
+
 const Order = () => {
   const { id } = useParams()
   const [order, setOrder] = useState<OrderDetails | null>(null)
   const [items, setItems] = useState<OrderItem[]>([])
+  const [menuItems, setMenuItems] = useState<MenuItem[]>([])
+
 
   useEffect(() => {
     // fetch order details
@@ -36,6 +45,10 @@ const Order = () => {
     fetch(`/api/items/order/${id}`)
       .then((res) => res.json())
       .then((data) => setItems(data))
+    
+    fetch('/api/menuitems')           // fetch 3 - all menu items
+    .then(res => res.json())
+    .then(data => setMenuItems(data))
   }, [id])
 
   if (!order) return <p>Loading...</p>
@@ -54,11 +67,14 @@ const Order = () => {
 
         <h3>Items Ordered</h3>
         <ul>
-          {items.map((item) => (
+          {items.map((item) => {
+            const menuItem = menuItems.find((m) => m.id === item.itemid)
+            return (
             <li key={item.id}>
-              Item #{item.itemid} — ${item.price.toFixed(2)}
+            {menuItem ? menuItem.name : `Item #${item.itemid}`} — ${item.price.toFixed(2)}
             </li>
-          ))}
+  )
+        })}
         </ul>
 
         <p>Subtotal: ${subtotal.toFixed(2)}</p>
