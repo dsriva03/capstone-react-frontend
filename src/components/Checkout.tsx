@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 interface CartItem {
   id: number
@@ -16,19 +17,55 @@ interface CheckoutProps {
   cartTotal: number
 }
 
-// checkout is a component that shows the cart summary and a payment form
-// it receives the cart items and total from the App component as props
 const Checkout = ({ cartItems, cartTotal }: CheckoutProps) => {
 
-    // state for form fields
   const [pan, setPan] = useState('')
   const [expiryMonth, setExpiryMonth] = useState('')
   const [expiryYear, setExpiryYear] = useState('')
   const [cvv, setCvv] = useState('')
 
-  // handleSubmit is a function that will be called when the user clicks the "Place Order" button.
-  const handleSubmit = () => {
-    console.log({ pan, expiryMonth, expiryYear, cvv })
+  const navigate = useNavigate()
+
+
+  const handleSubmit = async () => {
+    console.log('handleSubmit fired!')
+
+    const orderResponse = await fetch('/api/orders', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        pan: pan,
+        expiryMonth: parseInt(expiryMonth),
+        expiryYear: parseInt(expiryYear),
+        tax: 0,
+        tip: 0,
+        area: '',
+        location: '',
+        status: 'pending'
+      })
+    })
+
+    const order = await orderResponse.json()
+    console.log('Order created:', order)
+
+    const itemsResponse = await fetch(`/api/items/order/${order.id}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(
+        cartItems.map((item) => ({
+          orderid: order.id,
+          itemid: item.id,
+          price: item.price,
+          notes: '',
+          firstName: ''
+        }))
+      )
+    })
+
+    const items = await itemsResponse.json()
+    console.log('Items added:', items)
+
+    navigate(`/order/${order.id}`) 
   }
 
   return (
@@ -37,7 +74,6 @@ const Checkout = ({ cartItems, cartTotal }: CheckoutProps) => {
 
         <h2>Checkout</h2>
 
-        {/* Cart Summary */}
         {cartItems.length === 0 ? (
           <p>Your cart is empty.</p>
         ) : (
@@ -53,7 +89,6 @@ const Checkout = ({ cartItems, cartTotal }: CheckoutProps) => {
           </div>
         )}
 
-        {/* Payment Form */}
         <div className="card-form">
           <h3>Payment Details</h3>
 

@@ -4,7 +4,8 @@ import './Header.css'
 interface HeaderProps {
   cartCount: number
 }
-
+// header displays the title of the app and a navigation menu with links to the home page, checkout page, orders page, and login page. It also shows the number of items in the cart next to the checkout link
+// we use the Link component from react-router-dom to create links that navigate to different routes in our app without causing a full page reload.
 const Header = ({ cartCount }: HeaderProps) => {
   return (
     <header className="app-header">
