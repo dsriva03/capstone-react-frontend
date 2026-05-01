@@ -1,11 +1,8 @@
 .app-header {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-bottom: 24px;
-  padding: 16px;
-  background: #ffffff;
-  border-bottom: 1px solid #e2e8f0;
+  background: #0d0a05;
+  border-bottom: 1px solid #3a2e1a;
+  padding: 16px 24px;
+  margin-bottom: 0;
 }
 
 .header-content {
@@ -19,45 +16,51 @@
 .header-title {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 4px;
 }
 
 .kicker {
   margin: 0;
-  color: #7c3aed;
-  font-weight: 700;
+  color: #AB9F82;
+  font-family: 'IM Fell English', Georgia, serif;
+  font-style: italic;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.15em;
   font-size: 0.85rem;
 }
 
 h1 {
   margin: 0;
-  font-size: clamp(2rem, 3vw, 3rem);
+  font-family: 'UnifrakturMaguntia', cursive;
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  color: #DEC35A;
+  text-shadow: 0 2px 8px rgba(222, 195, 90, 0.3);
+  font-weight: normal;
 }
 
 .header-nav {
   display: flex;
-  gap: 16px;
+  gap: 8px;
 }
 
 .nav-link {
-  color: #475569;
+  color: #AB9F82;
   text-decoration: none;
-  font-weight: 500;
+  font-family: 'IM Fell English', Georgia, serif;
+  font-style: italic;
   padding: 8px 16px;
-  border-radius: 8px;
-  transition: background-color 0.2s, color 0.2s;
+  border: 1px solid transparent;
+  transition: border-color 0.2s, color 0.2s;
 }
 
 .nav-link:hover {
-  background-color: #f1f5f9;
-  color: #0f172a;
+  color: #DEC35A;
+  border-color: #3a2e1a;
 }
 
 .nav-link.active {
-  background-color: #7c3aed;
-  color: #ffffff;
+  color: #DEC35A;
+  border: 1px solid #DEC35A;
 }
 
 @media (max-width: 768px) {

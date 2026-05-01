@@ -1,9 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=IM+Fell+English:ital@0;1&display=swap');
+
 :root {
-  color-scheme: dark;
-  font-family: Inter, system-ui, sans-serif;
+  font-family: 'IM Fell English', Georgia, serif;
   font-size: 16px;
-  color: #111827;
-  background: #f8fafc;
+  color: #AB9F82;
+  background: #1a1208;
 }
 
 * {
@@ -13,96 +14,107 @@
 body {
   margin: 0;
   min-height: 100vh;
-  background: #f8fafc;
-  color: #111827;
+  background: #1a1208;
+  color: #AB9F82;
 }
 
-button,
-input {
+button, input {
   font: inherit;
 }
 
+/* ── Layout ── */
 .app-shell {
   max-width: 1200px;
   margin: 0 auto;
   padding: 24px;
 }
 
-.app-header {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-bottom: 24px;
+.page-content {
+  padding: 24px;
 }
 
-.kicker {
-  margin: 0;
-  color: #7c3aed;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 0.85rem;
+.page-content h2 {
+  font-family: 'UnifrakturMaguntia', cursive;
+  color: #DEC35A;
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-shadow: 0 2px 8px rgba(222, 195, 90, 0.3);
 }
 
-h1 {
-  margin: 0;
-  font-size: clamp(2rem, 3vw, 3rem);
+.page-content p {
+  color: #AB9F82;
 }
 
-.subtitle {
-  margin: 0;
-  color: #475569;
-}
-
+/* ── Status Messages ── */
 .status-message {
   padding: 24px;
-  border-radius: 16px;
-  background: #e2e8f0;
-  color: #0f172a;
+  border-radius: 4px;
+  background: #0d0a05;
+  color: #AB9F82;
   text-align: center;
+  border: 1px solid #3a2e1a;
 }
 
 .status-message.error {
-  background: #fee2e2;
-  color: #991b1b;
+  background: #1a0a05;
+  color: #D34E1A;
 }
 
+/* ── Menu Grid ── */
 .menu-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 20px;
 }
 
+/* ── Menu Card ── */
 .menu-card {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 20px;
+  background: #0d0a05;
+  border: 1px solid #3a2e1a;
+  border-radius: 4px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.menu-card:hover {
+  border-color: #DEC35A;
+  box-shadow: 0 10px 40px rgba(222, 195, 90, 0.15);
 }
 
 .menu-card-image {
   width: 100%;
   height: 200px;
   object-fit: cover;
+  filter: sepia(20%) brightness(0.85);
+  transition: filter 0.3s;
+}
+
+.menu-card:hover .menu-card-image {
+  filter: sepia(0%) brightness(1);
 }
 
 .menu-card-body {
   padding: 18px;
+  flex: 1;
 }
 
 .menu-card-body h2 {
   margin: 0 0 8px;
+  font-family: 'IM Fell English', Georgia, serif;
   font-size: 1.25rem;
+  color: #E8D6A3;
+  font-style: italic;
 }
 
 .menu-card-body p {
   margin: 0;
-  color: #475569;
+  color: #AB9F82;
   line-height: 1.6;
+  font-size: 0.9rem;
 }
 
 .menu-card-footer {
@@ -110,41 +122,167 @@ h1 {
   justify-content: space-between;
   align-items: center;
   padding: 16px 18px;
-  background: #f8fafc;
+  background: #080602;
   font-weight: 700;
-  color: #111827;
+  color: #DEC35A;
+  border-top: 1px solid #3a2e1a;
 }
 
+/* ── Buttons ── */
 .add-to-cart-btn {
-  background: #7c3aed;
-  color: #ffffff;
-  border: none;
+  background: transparent;
+  color: #DEC35A;
+  border: 1px solid #DEC35A;
   padding: 8px 14px;
-  border-radius: 8px;
+  border-radius: 2px;
   cursor: pointer;
-  transition: background-color 0.2s;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  transition: background-color 0.2s, color 0.2s;
 }
 
 .add-to-cart-btn:hover {
-  background: #6d28d9;
+  background: #DEC35A;
+  color: #0d0a05;
 }
 
+/* ── Card Form ── */
+.card-form {
+  margin-top: 32px;
+  padding: 32px;
+  background: #0d0a05;
+  border: 1px solid #3a2e1a;
+  border-radius: 4px;
+  max-width: 600px;
+}
+
+.card-form h3 {
+  font-family: 'UnifrakturMaguntia', cursive;
+  color: #DEC35A;
+  margin: 0 0 20px;
+  font-size: 1.8rem;
+  text-shadow: 0 2px 8px rgba(222, 195, 90, 0.3);
+}
+
+.card-form label {
+  display: block;
+  color: #AB9F82;
+  margin: 16px 0 4px;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.card-form input {
+  width: 100%;
+  padding: 10px 14px;
+  background: #1a1208;
+  border: 1px solid #3a2e1a;
+  border-radius: 2px;
+  color: #E8D6A3;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.card-form input:focus {
+  border-color: #DEC35A;
+}
+
+.card-form input::placeholder {
+  color: #5a4e32;
+}
+
+.card-form button {
+  margin-top: 24px;
+  width: 100%;
+  padding: 14px;
+  background: transparent;
+  color: #DEC35A;
+  border: 1px solid #DEC35A;
+  border-radius: 2px;
+  font-family: 'IM Fell English', Georgia, serif;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+.card-form button:hover {
+  background: #DEC35A;
+  color: #0d0a05;
+}
+
+/* ── Receipt ── */
+.receipt {
+  background: #0d0a05;
+  border: 1px solid #3a2e1a;
+  border-radius: 4px;
+  padding: 32px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.receipt h2 {
+  font-family: 'UnifrakturMaguntia', cursive;
+  color: #DEC35A;
+  border-bottom: 1px solid #3a2e1a;
+  padding-bottom: 16px;
+  font-size: 2rem;
+  text-shadow: 0 2px 8px rgba(222, 195, 90, 0.3);
+}
+
+.receipt p {
+  color: #AB9F82;
+  margin: 8px 0;
+}
+
+.receipt ul {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0;
+}
+
+.receipt ul li {
+  color: #AB9F82;
+  padding: 10px 0;
+  border-bottom: 1px dotted #3a2e1a;
+}
+
+/* ── Orders List ── */
+.orders-list {
+  list-style: none;
+  padding: 0;
+  max-width: 700px;
+}
+
+.orders-list li {
+  padding: 18px 20px;
+  margin-bottom: 12px;
+  background: #0d0a05;
+  border: 1px solid #3a2e1a;
+  border-radius: 4px;
+  color: #AB9F82;
+  cursor: pointer;
+  font-style: italic;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.orders-list li:hover {
+  border-color: #DEC35A;
+  color: #E8D6A3;
+}
+
+/* ── Divider ── */
+.zen-divider {
+  border: none;
+  border-top: 1px solid #3a2e1a;
+  margin: 24px 0;
+}
+
+/* ── Responsive ── */
 @media (max-width: 768px) {
   .app-shell {
     padding: 16px;
   }
-}
-
-.page-content {
-  padding: 24px;
-  text-align: center;
-}
-
-.page-content h2 {
-  color: #111827;
-  margin-bottom: 16px;
-}
-
-.page-content p {
-  color: #475569;
 }

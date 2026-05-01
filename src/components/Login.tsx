@@ -3,7 +3,7 @@ const Login = () => {
     <div className="app-shell">
       <div className="page-content">
         <h2>Login</h2>
-        <p>Authentication form will be implemented here.</p>
+        <p>To-Do</p>
       </div>
     </div>
   )

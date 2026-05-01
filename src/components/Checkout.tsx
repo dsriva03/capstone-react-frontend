@@ -28,7 +28,7 @@ const Checkout = ({ cartItems, cartTotal }: CheckoutProps) => {
 
 
   const handleSubmit = async () => {
-    console.log('handleSubmit fired!')
+    console.log('handleSubmit')
 
     const orderResponse = await fetch('/api/orders', {
       method: 'POST',
